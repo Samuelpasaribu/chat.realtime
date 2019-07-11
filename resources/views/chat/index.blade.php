@@ -2,16 +2,18 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <chat-box>
+    <div class="row ">
+        <div class="col s4">
             
-            </chat-box>
-        </div>
-        <div class="col-md-4">
             <chat-user-lists>
             
             </chat-user-lists>
+        </div>
+        <div class="col s8">
+            
+            <chat-box>
+            
+            </chat-box>
 
         </div>
     </div>

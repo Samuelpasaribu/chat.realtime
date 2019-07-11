@@ -1,6 +1,8 @@
 <template>
-    <div class="container">
-        Ini Users List
+    <div class="card">
+        <div class="card-content">
+            Ini Users List
+        </div>
     </div>
 </template>
 

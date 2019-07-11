@@ -1,7 +1,10 @@
 <template>
-    <div class="container">
-        <chat-message></chat-message>
-        <chat-form></chat-form>
+    <div class="card">
+        <div class="card-content">
+            <chat-message></chat-message>
+            <chat-form></chat-form>
+        </div>
+        
     </div>
 </template>
 

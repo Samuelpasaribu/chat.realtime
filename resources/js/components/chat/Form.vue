@@ -1,7 +1,7 @@
 <template>
     <div class="form-message">
         <div class="form-group">
-            <textarea name="message" id="" v-model="body" rows="4" @keydown="handleInput"></textarea>
+            <textarea class="materialize-textarea" placeholder="Tulis Pesan" name="message" id="" v-model="body" rows="4" @keydown="handleInput"></textarea>
         </div>
     </div>
 </template>
