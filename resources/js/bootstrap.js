@@ -48,8 +48,32 @@ import Echo from 'laravel-echo'
 window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
+    // authEndpoint : 'http://localhost/chat/public/broadcasting/auth',
     broadcaster: 'pusher',
-    key: 'ea21485c981c9fdf3fff',
+    key: '10ea8737b86187f45ef0',
     cluster: 'ap1',
     encrypted: true
 });
+
+Pusher.logToConsole = true;
+
+// Echo.private('grup.8')
+// .listen('GrupEvent', (message) => {
+//     // this.messages.push(message);
+//     console.log('Hai');
+    
+// });
+
+// window.Echo.private('grup-chat.' + window.Laravel.grup_id)
+// .listen('GrupEvent', (e) => {
+//     console.log('-----Berhasil-----');
+//     // this.conversations.push(e);
+// });
+// window.Echo.private('grup.' + Laravel.grup_id)
+// window.Echo.private('grup.8')
+// .listen('GrupEvent', (e) => {
+//     console.log('-----Berhasil-----');
+//     console.log(e);
+//     // sdfdklfdsj
+//     // this.conversations.push(e);
+// });

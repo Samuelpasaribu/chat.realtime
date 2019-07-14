@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\GrupUserChat;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +27,18 @@ Route::post('/message', 'ChatController@postMessage');
 Route::get('/grup', 'GrupController@index')->name('grup');
 Route::get('/grup/create', 'GrupController@create')->name('grup.create');
 Route::post('/grup/create', 'GrupController@store')->name('grup.store');
+Route::get('/grup/get-grup', 'GrupController@getGrup')->name('get-grup');
+
+Route::get('/grup-chat/chat/{id}', 'GrupChatController@index')->name('grup-chat');
+Route::get('/grup-chat/message/{id}', 'GrupChatController@getGrupChat');
+Route::post('/grup-chat/message', 'GrupChatController@postGrupChat');
+
+// Broadcast::routes(['middleware' => 'auth:admin']);
+
+// Route::get('test-broadcast', function(){
+//     broadcast(new \App\Events\GrupEvent($GrupUserChat));
+// });
+
 
 
 

@@ -11,7 +11,7 @@
 
             <div class="collection">
                 @foreach($GrupUser as $Grup)
-                    <a href="#!" class="collection-item">{{ $Grup->grup->nama_grup }}</a>
+                    <a href="{{ route('grup-chat', $Grup->grub_id) }}" class="collection-item">{{ $Grup->grup->nama_grup }}</a>
                 @endforeach
             </div>
 

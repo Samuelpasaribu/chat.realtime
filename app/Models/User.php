@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\GrupUserChat;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,5 +41,10 @@ class User extends Authenticatable
     public function messages()
     {
         return $this->hasMany(\App\Models\Message::class);
+    }
+
+    public function GrupUserChat()
+    {
+        return $this->hasMany(\App\Models\GrupUserChat::class);
     }
 }

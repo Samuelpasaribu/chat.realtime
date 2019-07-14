@@ -23,6 +23,11 @@ Vue.component('chat-box', require('./components/chat/Chatbox.vue').default);
 Vue.component('chat-user-lists', require('./components/chat/Userlist.vue').default);
 Vue.component('chat-message', require('./components/chat/Message.vue').default);
 Vue.component('chat-form', require('./components/chat/Form.vue').default);
+// Vue.component('gruplist', require('./components/grupchat/GrupListComponent.vue').default);
+Vue.component('grup-list', require('./components/grupchat/Gruplist.vue').default);
+Vue.component('chat-grup-box', require('./components/grupchat/Chatgrupbox.vue').default);
+Vue.component('grup-message', require('./components/grupchat/GrupMessage.vue').default);
+Vue.component('grup-form', require('./components/grupchat/GrupForm.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,6 +35,32 @@ Vue.component('chat-form', require('./components/chat/Form.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Bus from './bus';
+
+
 const app = new Vue({
     el: '#app',
+    // created(){
+        // window.Echo.private('grup.8')
+        // .listen('GrupEvent', (e) => {
+        //     console.log('-----Berhasil-----');
+        //     console.log(e);
+        //     // sdfdklfdsj
+        //     // this.conversations.push(e);
+        // });
+        
+    // }
+
+    created(){
+        Echo.private('grup.'+Laravel.grup_id)
+            .listen('GrupEvent', (message) => {
+                // this.messages.push(message);
+                // console.log('message');
+                // this.messages.push(message);
+                Bus.$emit('grup_chat.sent', message)
+
+
+                
+            });
+    }
 });

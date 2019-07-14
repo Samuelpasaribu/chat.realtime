@@ -18,7 +18,7 @@ class GrupController extends Controller
 
     public function index()
     {
-        $GrupUser = GrupUser::with('grup')->get();
+        $GrupUser = GrupUser::with('grup')->where(['user_id' => Auth::user()->id])->get();
         // print_r($GrupUser); die();
         return view('grup.index', compact('GrupUser'));
     }
@@ -48,5 +48,10 @@ class GrupController extends Controller
         }
 
         return redirect()->route('grup');
+    }
+
+    public function getGrup()
+    {
+        return GrupUser::with('grup')->where(['user_id' => Auth::user()->id])->get();
     }
 }

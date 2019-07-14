@@ -28,7 +28,9 @@
             'csrfToken' => csrf_token(),
             'user' => [
                 'name' => auth()->check() ? auth()->user()->name : null
-            ]
+            ],
+            'grup_id' => request()->id
+
         ]) !!};
 
     </script>
