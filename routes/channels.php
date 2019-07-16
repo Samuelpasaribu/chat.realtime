@@ -41,3 +41,18 @@ Broadcast::channel('grup.{grup_id}', function ($user, $grup_id) {
         return false;
     }
 });
+
+// Broadcast::channel('private.{id_tujuan}', function ($user, $id_tujuan) {
+Broadcast::channel('privatechat', function () {
+    // $cek =  \App\Models\GrupUser::where(['grub_id' => $grup_id, 'id_tujuan' => $user->id])->exists();
+    // if($cek){
+    //     return true;
+    // }else{
+    //     return false;
+    // }
+
+    // return (int) $user->id === (int) $id_tujuan;
+
+    return true;
+
+});

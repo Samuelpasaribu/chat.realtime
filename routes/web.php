@@ -14,7 +14,7 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
@@ -32,6 +32,15 @@ Route::get('/grup/get-grup', 'GrupController@getGrup')->name('get-grup');
 Route::get('/grup-chat/chat/{id}', 'GrupChatController@index')->name('grup-chat');
 Route::get('/grup-chat/message/{id}', 'GrupChatController@getGrupChat');
 Route::post('/grup-chat/message', 'GrupChatController@postGrupChat');
+
+Route::get('/private', 'PrivateController@index')->name('private');
+Route::get('/private/chat/{id_tujuan}', 'PrivateController@chat')->name('private-chat');
+Route::get('/private/message/{id}', 'PrivateController@getPrivateChat');
+Route::post('/private/message', 'PrivateController@postPrivateChat');
+Route::get('/private/get-user', 'PrivateController@getUser')->name('get-user');
+
+
+
 
 // Broadcast::routes(['middleware' => 'auth:admin']);
 

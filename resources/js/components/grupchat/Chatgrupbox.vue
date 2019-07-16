@@ -9,9 +9,24 @@
 </template>
 
 <script>
+    import Bus from '../../bus';
+
     export default {
+        
         mounted() {
-            console.log('Component mounted.')
+            // console.log('Component mounted.')
+             Echo.private('grup.'+Laravel.grup_id)
+            .listen('GrupEvent', (message) => {
+                // this.messages.push(message);
+                // console.log('message');
+                // this.messages.push(message);
+                Bus.$emit('grup_chat.sent', message)
+
+
+                console.log(Echo);
+            });
+
+            console.log(Echo);
         }
     }
 </script>

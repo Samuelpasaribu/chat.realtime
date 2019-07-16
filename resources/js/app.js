@@ -29,6 +29,11 @@ Vue.component('chat-grup-box', require('./components/grupchat/Chatgrupbox.vue').
 Vue.component('grup-message', require('./components/grupchat/GrupMessage.vue').default);
 Vue.component('grup-form', require('./components/grupchat/GrupForm.vue').default);
 
+Vue.component('user-private-list', require('./components/private/Userprivatelist.vue').default);
+Vue.component('private-message', require('./components/private/PrivateMessage.vue').default);
+Vue.component('private-grup-box', require('./components/private/Privategrupbox.vue').default);
+Vue.component('private-form', require('./components/private/PrivateForm.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -51,16 +56,9 @@ const app = new Vue({
         
     // }
 
-    created(){
-        Echo.private('grup.'+Laravel.grup_id)
-            .listen('GrupEvent', (message) => {
-                // this.messages.push(message);
-                // console.log('message');
-                // this.messages.push(message);
-                Bus.$emit('grup_chat.sent', message)
+    // created(){
+       
 
-
-                
-            });
-    }
+       
+    // }
 });

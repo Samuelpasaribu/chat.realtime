@@ -29,7 +29,9 @@
             'user' => [
                 'name' => auth()->check() ? auth()->user()->name : null
             ],
-            'grup_id' => request()->id
+            'grup_id' => request()->id,
+            'id_tujuan' => request()->id_tujuan,
+            'user_id' => auth()->check() ? auth()->user()->id : null
 
         ]) !!};
 
@@ -58,10 +60,10 @@
                             @else
 
                                 <li>
-                                    <a href="">Grup</a>
+                                    <a href="{{ route('grup') }}">Grup</a>
                                 </li>
                                 <li>
-                                    <a href="">Private</a>
+                                    <a href="{{ route('private') }}">Private</a>
                                 </li>
                                 <li>
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
