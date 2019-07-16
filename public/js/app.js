@@ -10719,7 +10719,8 @@ __webpack_require__.r(__webpack_exports__);
         created_at: moment__WEBPACK_IMPORTED_MODULE_1___default()().utc(0).format('YYYY-MM-DD HH:mm:ss'),
         user: {
           name: Laravel.user.name
-        }
+        },
+        user_id: Laravel.user_id
       };
       axios.post('/private/message', {
         chat: this.body.trim(),
@@ -10761,6 +10762,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10776,7 +10798,8 @@ __webpack_require__.r(__webpack_exports__);
   // },
   data: function data() {
     return {
-      messages: []
+      messages: [],
+      user_id: Laravel.user_id
     };
   },
   mounted: function mounted() {
@@ -10790,6 +10813,23 @@ __webpack_require__.r(__webpack_exports__);
         // if(){
         _this.messages.push(newMessage); // }
 
+      }
+
+      if (Laravel.id_tujuan != newMessage.user_id) {
+        //     axios.post('/private/status', {status: 0, user_id_tujuan: Laravel.id_tujuan })
+        //     .then(respone => {
+        //         Bus.$emit('private_chat_me.sent', newMessage)
+        //         this.body = ''
+        //         // console.log(respone);
+        //     })
+        // }else{
+        axios.post('/private/status', {
+          status: 1,
+          user_id_tujuan: Laravel.id_tujuan
+        }).then(function (respone) {
+          // Bus.$emit('private_chat_me.sent', newMessage)
+          _this.body = ''; // console.log(respone);
+        });
       } // if( newMessage.user_id == Laravel.user_id){
       //     this.messages.push(newMessage);
       // }
@@ -11036,7 +11076,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".messages {\n  margin-top: 10px;\n  background-color: white;\n  border-radius: 3px;\n  padding: 5px;\n}\n.messages .user span {\n  font-weight: bold;\n}\n.messages .message {\n  font-size: 1.2rem;\n}\n.chat-list {\n  height: 450px;\n  overflow-y: scroll;\n}", ""]);
+exports.push([module.i, ".messages {\n  margin: 0;\n  background-color: white;\n  border-radius: 3px;\n}\n.messages .user span {\n  font-weight: bold;\n}\n.messages .message {\n  font-size: 1.2rem;\n}\n.chat-list {\n  height: 450px;\n  overflow-y: scroll;\n}\n.messages-me {\n  background-color: #0176be;\n  border-radius: 4px;\n  /* width: 345px; */\n  text-align: right;\n  color: white;\n  margin: 0;\n  padding: 5px;\n}\n.messages-you {\n  background-color: #b2dcf7;\n  border-radius: 4px;\n  /* width: 345px; */\n  text-align: left;\n  color: #1d1c1c;\n  margin: 0;\n  padding: 5px;\n}", ""]);
 
 // exports
 
@@ -58392,14 +58432,51 @@ var render = function() {
     { staticClass: "chat-list" },
     _vm._l(_vm.messages, function(message) {
       return _c("div", { staticClass: "messages" }, [
-        _c("div", { staticClass: "user" }, [
-          _vm._v("\n            " + _vm._s(message.user.name) + " "),
-          _c("span", [_vm._v(_vm._s(message.created_at))])
-        ]),
+        message.user_id == _vm.user_id
+          ? _c("div", [
+              _c("div", { staticClass: "messages-me" }, [
+                _c("div", { staticClass: "user" }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(message.user.name) +
+                      " "
+                  ),
+                  _c("span", [_vm._v(_vm._s(message.created_at))])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "message" }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(message.chat) +
+                      "\n                    "
+                  )
+                ])
+              ])
+            ])
+          : _vm._e(),
         _vm._v(" "),
-        _c("div", { staticClass: "message" }, [
-          _vm._v("\n            " + _vm._s(message.chat) + "\n        ")
-        ])
+        message.user_id != _vm.user_id
+          ? _c("div", [
+              _c("div", { staticClass: "messages-you" }, [
+                _c("div", { staticClass: "user" }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(message.user.name) +
+                      " "
+                  ),
+                  _c("span", [_vm._v(_vm._s(message.created_at))])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "message" }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(message.chat) +
+                      "\n                    "
+                  )
+                ])
+              ])
+            ])
+          : _vm._e()
       ])
     }),
     0

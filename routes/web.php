@@ -37,6 +37,7 @@ Route::get('/private', 'PrivateController@index')->name('private');
 Route::get('/private/chat/{id_tujuan}', 'PrivateController@chat')->name('private-chat');
 Route::get('/private/message/{id}', 'PrivateController@getPrivateChat');
 Route::post('/private/message', 'PrivateController@postPrivateChat');
+Route::post('/private/status', 'PrivateController@postStatusChat');
 Route::get('/private/get-user', 'PrivateController@getUser')->name('get-user');
 
 

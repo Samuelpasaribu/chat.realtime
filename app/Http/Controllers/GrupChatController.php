@@ -18,9 +18,11 @@ class GrupChatController extends Controller
 
     public function index($id)
     {
-        // $GrupUser = GrupUser::with('grup')->where(['user_id' => Auth::user()->id])->get();
+        $Grup = Grup::where(['id' => $id])->first();
 
-        return view('grup-chat.index');
+        // print_r($Grup); die();
+
+        return view('grup-chat.index', compact('Grup'));
 
         // var_dump( \App\Models\GrupUser::where(['grup_id' => 8])->select('user_id'));
 

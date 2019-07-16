@@ -35,7 +35,8 @@
                     created_at : moment().utc(0).format('YYYY-MM-DD HH:mm:ss'),
                     user : {
                         name : Laravel.user.name
-                    }
+                    },
+                    user_id : Laravel.user_id
                 }
 
                 axios.post('/private/message', {chat: this.body.trim(), user_id_tujuan: Laravel.id_tujuan })

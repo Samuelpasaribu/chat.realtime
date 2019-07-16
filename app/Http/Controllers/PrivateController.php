@@ -50,7 +50,8 @@ class PrivateController extends Controller
         $UserChat =  UserChat::create([
             'chat' => $request->chat,
             'user_id_tujuan' => $request->user_id_tujuan,
-            'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id,
+            'status' => 0
         ]);
 
         // $GrupUserChat->load('user');
@@ -65,19 +66,19 @@ class PrivateController extends Controller
 
     public function postStatusChat(Request $request)
     {
-        $UserChat =  UserChat::create([
-            'chat' => 0,
+        return StatusChat::create([
+            'status' => $request->status,
             'user_id_tujuan' => $request->user_id_tujuan,
             'user_id' => Auth::user()->id
         ]);
 
         // $GrupUserChat->load('user');
 
-        broadcast(new PrivateEvent($UserChat))->toOthers();
+        // broadcast(new PrivateEvent($UserChat))->toOthers();
 
         // event(new GrupEvent($GrupUserChat));
 
 
-        return $UserChat;
+        // return $UserChat;
     }
 }
