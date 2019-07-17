@@ -1,11 +1,26 @@
 <template>
     <div class="chat-list">
         <div class="messages" v-for="message in messages">
-            <div class="user">
-                {{ message.user.name }} <span>{{ message.created_at }}</span>
+            <div v-if="message.user_id == user_id">
+                <div class="messages-me">
+                    <div class="user">
+                        {{ message.user.name }} <span>{{ message.created_at }}</span>
+                    </div>
+                    <div class="message">
+                        {{ message.chat }}
+                    </div>
+                </div>
             </div>
-            <div class="message">
-                {{ message.chat }}
+
+            <div v-if="message.user_id != user_id">
+                <div class="messages-you">
+                    <div class="user">
+                        {{ message.user.name }} <span>{{ message.created_at }}</span>
+                    </div>
+                    <div class="message">
+                        {{ message.chat }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -28,7 +43,9 @@ import { log } from 'util';
         // },
         data(){
             return {
-                messages : []
+                messages : [],
+                user_id : Laravel.user_id
+
             }
         },
         mounted() {
@@ -81,6 +98,28 @@ import { log } from 'util';
     .chat-list{
         height: 450px;
         overflow-y: scroll;
+    }
+
+    .messages-me{
+        background-color: #0176be;
+        border-radius: 4px;
+        /* width: 345px; */
+        text-align: right;
+        color: white;
+        margin: 0;
+        padding: 5px;
+
+    }
+
+    .messages-you{
+        background-color: #b2dcf7;
+        border-radius: 4px;
+        /* width: 345px; */
+        text-align: left;
+        color: rgb(29, 28, 28);
+        margin: 0;
+        padding: 5px;
+
     }
 </style>
 

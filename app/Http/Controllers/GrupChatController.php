@@ -8,6 +8,7 @@ use App\Models\Grup;
 use App\Models\GrupUser;
 use App\Models\GrupUserChat;
 use App\Events\GrupEvent;
+use App\Models\User;
 
 class GrupChatController extends Controller
 {
@@ -53,5 +54,32 @@ class GrupChatController extends Controller
 
 
         return $GrupUserChat;
+    }
+
+    public function create($id)
+    {
+        $Grup = Grup::where(['id' => $id])->first();
+
+
+        return view('grup-chat.create', compact('Grup'));
+
+    }
+
+    public function store(Request $request)
+    {
+        // dd($request->id_grup);
+        $User = User::where(['email' => $request->email]);
+
+        if(!$User->exists()){
+            return back()->with('warning','Email Tidak Ditemukan!');
+        }
+    
+        $data = new GrupUser();
+        $data->grub_id = $request->id_grup;
+        $data->user_id = $User->first()->id;
+        $data->save();
+     
+
+        return redirect()->route('grup-chat', $request->id_grup);
     }
 }

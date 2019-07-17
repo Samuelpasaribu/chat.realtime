@@ -10509,6 +10509,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10523,6 +10535,11 @@ __webpack_require__.r(__webpack_exports__);
         e.preventDefault();
         this.submit();
       }
+    },
+    handleKirim: function handleKirim(e) {
+      // alert('Hai');\
+      e.preventDefault();
+      this.submit();
     },
     submit: function submit() {
       var _this = this;
@@ -10578,6 +10595,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10593,7 +10625,8 @@ __webpack_require__.r(__webpack_exports__);
   // },
   data: function data() {
     return {
-      messages: []
+      messages: [],
+      user_id: Laravel.user_id
     };
   },
   mounted: function mounted() {
@@ -10692,6 +10725,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10706,6 +10751,11 @@ __webpack_require__.r(__webpack_exports__);
         e.preventDefault();
         this.submit();
       }
+    },
+    handleKirim: function handleKirim(e) {
+      // alert('Hai');\
+      e.preventDefault();
+      this.submit();
     },
     submit: function submit() {
       var _this = this;
@@ -11038,7 +11088,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".messages {\n  margin-top: 10px;\n  background-color: white;\n  border-radius: 3px;\n  padding: 5px;\n}\n.messages .user span {\n  font-weight: bold;\n}\n.messages .message {\n  font-size: 1.2rem;\n}\n.chat-list {\n  height: 450px;\n  overflow-y: scroll;\n}", ""]);
+exports.push([module.i, ".messages {\n  margin-top: 10px;\n  background-color: white;\n  border-radius: 3px;\n  padding: 5px;\n}\n.messages .user span {\n  font-weight: bold;\n}\n.messages .message {\n  font-size: 1.2rem;\n}\n.chat-list {\n  height: 450px;\n  overflow-y: scroll;\n}\n.messages-me {\n  background-color: #0176be;\n  border-radius: 4px;\n  /* width: 345px; */\n  text-align: right;\n  color: white;\n  margin: 0;\n  padding: 5px;\n}\n.messages-you {\n  background-color: #b2dcf7;\n  border-radius: 4px;\n  /* width: 345px; */\n  text-align: left;\n  color: #1d1c1c;\n  margin: 0;\n  padding: 5px;\n}", ""]);
 
 // exports
 
@@ -58235,34 +58285,53 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "form-message" }, [
-    _c("div", { staticClass: "form-group" }, [
-      _c("textarea", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.body,
-            expression: "body"
-          }
-        ],
-        staticClass: "materialize-textarea",
-        attrs: {
-          placeholder: "Tulis Pesan",
-          name: "message",
-          id: "",
-          rows: "4"
-        },
-        domProps: { value: _vm.body },
-        on: {
-          keydown: _vm.handleInput,
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col m10 s8" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.body,
+                expression: "body"
+              }
+            ],
+            staticClass: "materialize-textarea",
+            attrs: {
+              placeholder: "Tulis Pesan",
+              name: "message",
+              id: "",
+              rows: "4"
+            },
+            domProps: { value: _vm.body },
+            on: {
+              keydown: _vm.handleInput,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.body = $event.target.value
+              }
             }
-            _vm.body = $event.target.value
-          }
-        }
-      })
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col m2 s4" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn waves-effect waves-light",
+            attrs: { name: "action" },
+            on: { click: _vm.handleKirim }
+          },
+          [
+            _vm._v("Kirim\n                "),
+            _c("i", { staticClass: "material-icons right" }, [_vm._v("send")])
+          ]
+        )
+      ])
     ])
   ])
 }
@@ -58293,14 +58362,47 @@ var render = function() {
     { staticClass: "chat-list" },
     _vm._l(_vm.messages, function(message) {
       return _c("div", { staticClass: "messages" }, [
-        _c("div", { staticClass: "user" }, [
-          _vm._v("\n            " + _vm._s(message.user.name) + " "),
-          _c("span", [_vm._v(_vm._s(message.created_at))])
-        ]),
+        message.user_id == _vm.user_id
+          ? _c("div", [
+              _c("div", { staticClass: "messages-me" }, [
+                _c("div", { staticClass: "user" }, [
+                  _vm._v(
+                    "\n                    " + _vm._s(message.user.name) + " "
+                  ),
+                  _c("span", [_vm._v(_vm._s(message.created_at))])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "message" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(message.chat) +
+                      "\n                "
+                  )
+                ])
+              ])
+            ])
+          : _vm._e(),
         _vm._v(" "),
-        _c("div", { staticClass: "message" }, [
-          _vm._v("\n            " + _vm._s(message.chat) + "\n        ")
-        ])
+        message.user_id != _vm.user_id
+          ? _c("div", [
+              _c("div", { staticClass: "messages-you" }, [
+                _c("div", { staticClass: "user" }, [
+                  _vm._v(
+                    "\n                    " + _vm._s(message.user.name) + " "
+                  ),
+                  _c("span", [_vm._v(_vm._s(message.created_at))])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "message" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(message.chat) +
+                      "\n                "
+                  )
+                ])
+              ])
+            ])
+          : _vm._e()
       ])
     }),
     0
@@ -58374,34 +58476,53 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "form-message" }, [
-    _c("div", { staticClass: "form-group" }, [
-      _c("textarea", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.body,
-            expression: "body"
-          }
-        ],
-        staticClass: "materialize-textarea",
-        attrs: {
-          placeholder: "Tulis Pesan",
-          name: "message",
-          id: "",
-          rows: "4"
-        },
-        domProps: { value: _vm.body },
-        on: {
-          keydown: _vm.handleInput,
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col m10 s8" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.body,
+                expression: "body"
+              }
+            ],
+            staticClass: "materialize-textarea",
+            attrs: {
+              placeholder: "Tulis Pesan",
+              name: "message",
+              id: "",
+              rows: "4"
+            },
+            domProps: { value: _vm.body },
+            on: {
+              keydown: _vm.handleInput,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.body = $event.target.value
+              }
             }
-            _vm.body = $event.target.value
-          }
-        }
-      })
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col m2 s4" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn waves-effect waves-light",
+            attrs: { name: "action" },
+            on: { click: _vm.handleKirim }
+          },
+          [
+            _vm._v("Kirim\n                "),
+            _c("i", { staticClass: "material-icons right" }, [_vm._v("send")])
+          ]
+        )
+      ])
     ])
   ])
 }

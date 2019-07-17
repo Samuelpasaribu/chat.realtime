@@ -4,7 +4,7 @@
 <div class="container" style="margin-top: 35px">
     <div class="row ">
         
-        <div class="col s8 push-s2">
+        <div class="col s12 m8 push-m2">
             <h5 class="center-align">Daftar User</h5>
             <hr>
 

@@ -1,8 +1,20 @@
 <template>
     <div class="form-message">
-        <div class="form-group">
-            <textarea class="materialize-textarea" placeholder="Tulis Pesan" name="message" id="" v-model="body" rows="4" @keydown="handleInput"></textarea>
+        <div class="row">
+
+            <div class="col m10 s8">
+                <div class="form-group">
+                    <textarea class="materialize-textarea" placeholder="Tulis Pesan" name="message" id="" v-model="body" rows="4" @keydown="handleInput"></textarea>
+                </div>
+            </div>
+            <div class="col m2 s4">
+                <button class="btn waves-effect waves-light" v-on:click="handleKirim" name="action">Kirim
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+
         </div>
+        
     </div>
 </template>
 
@@ -23,6 +35,11 @@
                     e.preventDefault();
                     this.submit();
                 }
+            },
+            handleKirim(e){
+                // alert('Hai');\
+                e.preventDefault();
+                this.submit();
             },
 
             submit(){

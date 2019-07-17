@@ -32,6 +32,9 @@ Route::get('/grup/get-grup', 'GrupController@getGrup')->name('get-grup');
 Route::get('/grup-chat/chat/{id}', 'GrupChatController@index')->name('grup-chat');
 Route::get('/grup-chat/message/{id}', 'GrupChatController@getGrupChat');
 Route::post('/grup-chat/message', 'GrupChatController@postGrupChat');
+Route::get('/grup-chat/create/{id}', 'GrupChatController@create')->name('undang');
+Route::post('/grup-chat/create', 'GrupChatController@store')->name('grup-chat.store');
+
 
 Route::get('/private', 'PrivateController@index')->name('private');
 Route::get('/private/chat/{id_tujuan}', 'PrivateController@chat')->name('private-chat');
