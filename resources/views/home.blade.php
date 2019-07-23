@@ -12,7 +12,7 @@
                         </div>
                     @endif
 
-                    <h3 style="text-align:center; margin-top:35px">Selamat Datang</h3>
+                    <h3 style="text-align:center; margin-top:35px">Selamat Datang <br> Di Aplikasi PushChat</h3>
                 </div>
             </div>
     </div>
