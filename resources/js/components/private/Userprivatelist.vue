@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-content box-height">
-            Daftar User
+            Daftar Kontak
 
             <div class="collection" v-for="user in users">
                 <a :id="user.id" :href="'/private/chat/'+ user.id" class="collection-item">{{ user.name }}</a>                

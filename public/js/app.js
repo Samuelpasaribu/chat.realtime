@@ -58661,7 +58661,7 @@ var render = function() {
       "div",
       { staticClass: "card-content box-height" },
       [
-        _vm._v("\n        Daftar User\n\n        "),
+        _vm._v("\n        Daftar Kontak\n\n        "),
         _vm._l(_vm.users, function(user) {
           return _c("div", { staticClass: "collection" }, [
             _c(

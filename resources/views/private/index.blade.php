@@ -5,7 +5,7 @@
     <div class="row ">
         
         <div class="col s12 m8 push-m2">
-            <h5 class="center-align">Daftar User</h5>
+            <h5 class="center-align">Daftar Kontak</h5>
             <hr>
 
             <div class="collection">
