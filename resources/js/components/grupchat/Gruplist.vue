@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <div class="card-content">
+        <div class="card-content box-height">
             Daftar Grup
 
             <div class="collection" v-for="grup in grups">
@@ -9,6 +9,15 @@
         </div>
     </div>
 </template>
+
+<style>
+
+    .box-height{
+        height: 630px;
+        overflow-y: scroll;
+    }
+
+</style>
 
 <script>
     export default {

@@ -13,7 +13,7 @@
 <style>
 
     .box-height{
-        height: 557px;
+        height: 630px;
         overflow-y: scroll;
     }
 

@@ -98,7 +98,7 @@ import { log } from 'util';
     }
 
     .chat-list{
-        height: 450px;
+        height: 430px;
         overflow-y: scroll;
     }
 
