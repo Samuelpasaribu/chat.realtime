@@ -19,12 +19,8 @@
              Echo.private('privatechat')
             .listen('PrivateEvent', (message) => {
                 // this.messages.push(message);
-                console.log(message);
-                console.log('Berhasssssiiiiiilll');
                 // this.messages.push(message);
-                Bus.$emit('private_chat.sent', message)
-
-                console.log(Echo);
+                Bus.$emit('private_chat.sent', message);
 
                 
             });

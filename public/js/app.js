@@ -10481,7 +10481,6 @@ __webpack_require__.r(__webpack_exports__);
       // console.log('message');
       // this.messages.push(message);
       _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('grup_chat.sent', message);
-      console.log(Echo);
     });
     console.log(Echo);
   }
@@ -10553,9 +10552,10 @@ __webpack_require__.r(__webpack_exports__);
         created_at: moment__WEBPACK_IMPORTED_MODULE_1___default()().utc(0).format('YYYY-MM-DD HH:mm:ss'),
         user: {
           name: Laravel.user.name
-        }
+        },
+        user_id: Laravel.user_id
       };
-      axios.post('/grup-chat/message', {
+      axios.post('/PushChat2/public/grup-chat/message', {
         chat: this.body.trim(),
         grup_id: Laravel.grup_id
       }).then(function (respone) {
@@ -10580,8 +10580,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../bus */ "./resources/js/bus.js");
 /* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! timers */ "./node_modules/timers-browserify/main.js");
 /* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(timers__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! util */ "./node_modules/util/util.js");
-/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! util */ "./node_modules/util/util.js");
+/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_3__);
 //
 //
 //
@@ -10610,6 +10612,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -10644,7 +10647,7 @@ __webpack_require__.r(__webpack_exports__);
     getMessages: function getMessages() {
       var _this2 = this;
 
-      axios.get('/grup-chat/message/' + Laravel.grup_id).then(function (respone) {
+      axios.get('/PushChat2/public/grup-chat/message/' + Laravel.grup_id).then(function (respone) {
         _this2.messages = respone.data.reverse(); // console.log(respone);
 
         _this2.scrollToBottom();
@@ -10695,7 +10698,7 @@ __webpack_require__.r(__webpack_exports__);
     getGrup: function getGrup() {
       var _this = this;
 
-      axios.get('/grup/get-grup').then(function (respone) {
+      axios.get('/PushChat2/public/grup/get-grup').then(function (respone) {
         _this.grups = respone.data.reverse(); // this.scrollToBottom()
         // console.log(respone);
       });
@@ -10772,7 +10775,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         user_id: Laravel.user_id
       };
-      axios.post('/private/message', {
+      axios.post('/PushChat2/public/private/message', {
         chat: this.body.trim(),
         user_id_tujuan: Laravel.id_tujuan
       }).then(function (respone) {
@@ -10873,7 +10876,7 @@ __webpack_require__.r(__webpack_exports__);
         //         // console.log(respone);
         //     })
         // }else{
-        axios.post('/private/status', {
+        axios.post('/PushChat2/public/private/status', {
           status: 1,
           user_id_tujuan: Laravel.id_tujuan
         }).then(function (respone) {
@@ -10908,7 +10911,7 @@ __webpack_require__.r(__webpack_exports__);
     getMessages: function getMessages() {
       var _this2 = this;
 
-      axios.get('/private/message/' + Laravel.id_tujuan).then(function (respone) {
+      axios.get('/PushChat2/public/private/message/' + Laravel.id_tujuan).then(function (respone) {
         _this2.messages = respone.data.reverse(); // console.log(respone);
 
         _this2.scrollToBottom();
@@ -10952,11 +10955,8 @@ __webpack_require__.r(__webpack_exports__);
     //  Echo.private('private.'+Laravel.id_tujuan)
     Echo["private"]('privatechat').listen('PrivateEvent', function (message) {
       // this.messages.push(message);
-      console.log(message);
-      console.log('Berhasssssiiiiiilll'); // this.messages.push(message);
-
+      // this.messages.push(message);
       _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('private_chat.sent', message);
-      console.log(Echo);
     }); // .leave('privatechat', );
 
     console.log(Echo);
@@ -11009,7 +11009,7 @@ __webpack_require__.r(__webpack_exports__);
     getGrup: function getGrup() {
       var _this = this;
 
-      axios.get('/private/get-user').then(function (respone) {
+      axios.get('/PushChat2/public/private/get-user').then(function (respone) {
         _this.users = respone.data; // this.scrollToBottom()
         // console.log(respone);
       });
@@ -58442,7 +58442,10 @@ var render = function() {
               "a",
               {
                 staticClass: "collection-item",
-                attrs: { id: grup.id, href: "/grup-chat/chat/" + grup.grub_id }
+                attrs: {
+                  id: grup.id,
+                  href: "/PushChat2/public/grup-chat/chat/" + grup.grub_id
+                }
               },
               [_vm._v(_vm._s(grup.grup.nama_grup))]
             )
@@ -58668,7 +58671,10 @@ var render = function() {
               "a",
               {
                 staticClass: "collection-item",
-                attrs: { id: user.id, href: "/private/chat/" + user.id }
+                attrs: {
+                  id: user.id,
+                  href: "/PushChat2/public/private/chat/" + user.id
+                }
               },
               [_vm._v(_vm._s(user.name))]
             )
@@ -70940,7 +70946,7 @@ if (token) {
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  // authEndpoint : 'http://localhost/chat/public/broadcasting/auth',
+  authEndpoint: '/PushChat2/public/broadcasting/auth',
   broadcaster: 'pusher',
   key: '10ea8737b86187f45ef0',
   cluster: 'ap1',

@@ -56,7 +56,7 @@
                     user_id : Laravel.user_id
                 }
 
-                axios.post('/private/message', {chat: this.body.trim(), user_id_tujuan: Laravel.id_tujuan })
+                axios.post('/PushChat2/public/private/message', {chat: this.body.trim(), user_id_tujuan: Laravel.id_tujuan })
                 .then(respone => {
                     Bus.$emit('private_chat_me.sent', newMessage)
 

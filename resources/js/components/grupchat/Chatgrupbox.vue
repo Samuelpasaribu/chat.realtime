@@ -21,9 +21,6 @@
                 // console.log('message');
                 // this.messages.push(message);
                 Bus.$emit('grup_chat.sent', message)
-
-
-                console.log(Echo);
             });
 
             console.log(Echo);

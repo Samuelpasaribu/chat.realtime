@@ -52,10 +52,11 @@
                     created_at : moment().utc(0).format('YYYY-MM-DD HH:mm:ss'),
                     user : {
                         name : Laravel.user.name
-                    }
+                    },
+                    user_id : Laravel.user_id
                 }
 
-                axios.post('/grup-chat/message', {chat: this.body.trim(), grup_id: Laravel.grup_id})
+                axios.post('/PushChat2/public/grup-chat/message', {chat: this.body.trim(), grup_id: Laravel.grup_id})
                 .then(respone => {
                     Bus.$emit('grup_chat.sent', newMessage)
 

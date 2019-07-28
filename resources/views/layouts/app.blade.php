@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>PushChat</title>
+    <!-- <title>{{ config('app.name', 'PUSHCHAT') }}</title> -->
 
     {!! MaterializeCSS::include_full() !!}
 

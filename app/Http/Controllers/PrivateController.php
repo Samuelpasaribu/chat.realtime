@@ -18,16 +18,17 @@ class PrivateController extends Controller
 
     public function index()
     {
-        $Users = User::orderBy('name', 'asc')->get();
+        $Users = User::orderBy('name', 'asc')->whereNotIn('id', [Auth::user()->id])->get();
         // print_r($User); die();
         return view('private.index', compact('Users'));
     }
 
-    public function chat()
+    public function chat($id)
     {
-        $Users = User::orderBy('name', 'asc')->get();
+        $Users = User::orderBy('name', 'asc')->whereNotIn('id', [Auth::user()->id])->get();
+        $User = User::where(['id' => $id])->first();
         // print_r($User); die();
-        return view('private.chat', compact('Users'));
+        return view('private.chat', compact('User'));
     }
 
     public function getPrivateChat($id)
@@ -42,7 +43,7 @@ class PrivateController extends Controller
 
     public function getUser()
     {
-        return User::orderBy('name', 'asc')->get();
+        return User::orderBy('name', 'asc')->whereNotIn('id', [Auth::user()->id])->get();
     }
 
     public function postPrivateChat(Request $request)

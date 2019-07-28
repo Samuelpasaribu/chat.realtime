@@ -4,7 +4,7 @@
             Daftar Kontak
 
             <div class="collection" v-for="user in users">
-                <a :id="user.id" :href="'/private/chat/'+ user.id" class="collection-item">{{ user.name }}</a>                
+                <a :id="user.id" :href="'/PushChat2/public/private/chat/'+ user.id" class="collection-item">{{ user.name }}</a>                
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
         },
         methods: {
             getGrup(){
-                axios.get('/private/get-user').then(respone => {
+                axios.get('/PushChat2/public/private/get-user').then(respone => {
                     this.users = respone.data
                     // this.scrollToBottom()
                     // console.log(respone);

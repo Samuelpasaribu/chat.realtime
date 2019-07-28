@@ -73,7 +73,7 @@
                 //         // console.log(respone);
                 //     })
                 // }else{
-                    axios.post('/private/status', {status: 1, user_id_tujuan: Laravel.id_tujuan })
+                    axios.post('/PushChat2/public/private/status', {status: 1, user_id_tujuan: Laravel.id_tujuan })
                     .then(respone => {
                         // Bus.$emit('private_chat_me.sent', newMessage)
 
@@ -112,7 +112,7 @@
         },
         methods: {
             getMessages(){     
-                axios.get('/private/message/'+Laravel.id_tujuan).then(respone => {
+                axios.get('/PushChat2/public/private/message/'+Laravel.id_tujuan).then(respone => {
                     this.messages = respone.data.reverse()
                     // console.log(respone);
                     this.scrollToBottom()

@@ -28,7 +28,9 @@
 
 <script>
     import Bus from '../../bus';
-import { setTimeout } from 'timers';
+    import { setTimeout } from 'timers';
+    import moment from 'moment';
+
 import { log } from 'util';
 
     export default {
@@ -61,7 +63,7 @@ import { log } from 'util';
         },
         methods: {
             getMessages(){     
-                axios.get('/grup-chat/message/'+Laravel.grup_id).then(respone => {
+                axios.get('/PushChat2/public/grup-chat/message/'+Laravel.grup_id).then(respone => {
                     this.messages = respone.data.reverse()
                     // console.log(respone);
                     this.scrollToBottom()
